@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"hard1\"\nauthor: \"Vandit Jain\"\ndate: \"13 February 2017\"\noutput: html_document\n---\n\n1. I can build web applications using the shiny R package to produce an interactive output. The idea is to use shiny package along with rgbif package. rgbif package includes gbifmap function which gives a map output when provided with some input. For eg-\n\nInstead of using the rgbif, we can build this feature using maps and mapproj package also.\n\nOn implementation, user can give input in the form of drop-downs, sliders etc.(see figure for an example representation) to give input to the gbif map function that is running in the server.R of the web application. This would definitely help inexperienced users.\n\n```{r example,results='hide'}\n  library(rgbif)\n  library(rgeospatialquality)\n  key <- name_backbone(name='Puma concolor')$speciesKey\n  dat <- occ_search(taxonKey=key, return='data', limit=100)\n  gbifmap(dat)\n```\n\n!(example.png)\n\n2. Outputs from shiny and other output plots can be made more interactive using plotly package (https://plot.ly/r/) . They provide functions to build various kinds of statistical figures like pie charts, histograms that give interactive details.\nThis can be used to compare data for different species, years, region and make data analysis a much better experience.\n\n3. Proper documentation of all the functions can be done to produce a detailed tutorial along with reference to the whole package.\n",
+    "created" : 1487003096788.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "700925451",
+    "id" : "BB962D24",
+    "lastKnownWriteTime" : 1487003555,
+    "last_content_update" : 1487003555238,
+    "path" : "/media/vandit/New Volume/study/programming/gsoc/hard/hard1.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

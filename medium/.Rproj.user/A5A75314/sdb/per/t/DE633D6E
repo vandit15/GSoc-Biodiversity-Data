@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"occTAM\"\nauthor: \"Vandit Jain\"\ndate: \"`r Sys.Date()`\"\noutput: rmarkdown::html_vignette\nvignette: >\n  %\\VignetteIndexEntry{Vignette Title}\n  %\\VignetteEngine{knitr::rmarkdown}\n  %\\VignetteEncoding{UTF-8}\n---\n\nThis function takes as parameters-\n\n1. The country in ISO 3166-1-alpha-2 format(two charaters to represent a particular country).\n\n2. Key for selecting the class of species (an integer defined accordingly by GBIF).\n\n3. A logical value(TRUE/FALSE) as to whether user wants complete details and large output with all fields.\n\nThis function uses the rgbif and the rgeospatialquality packages to extract data and then to apply the Geospatial Quality API respectively (adding flags).\n\n\nThe parameters have default values to get the occurence data of Australian terrestrial mammals, but other values can be given to the parameters to search accordingly.\n\n\n",
+    "created" : 1486815680944.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1509736322",
+    "id" : "DE633D6E",
+    "lastKnownWriteTime" : 1486815744,
+    "last_content_update" : 1486815744438,
+    "path" : "/media/vandit/New Volume/study/programming/gsoc/medium/vignettes/occTAM.Rmd",
+    "project_path" : "vignettes/occTAM.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

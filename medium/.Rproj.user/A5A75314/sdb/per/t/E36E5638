@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' function to retrieve occurence data of terrestial animals in Australia and apply GQ API\n#'\n#' @name occTAM\n#'\n#' @title occurence data from GBIF datasets.\n#'\n#' @description function to retrieve occurence data of terrestial\n#' animals in Australia and apply GQ API\n#'\n#' @param country (character)ISO 3166-1-alpha-2 code of a particular country to\n#' get occurences of that country.Default:\"AU\"\n#' @param classKey (integer)Key of a particular class(eg. animalia) according to\n#' GBIF. Default:359\n#' @param minimal (logical)False to get full set of fileds for each record.\n#' Default:FALSE\n#'\n#' @return a data frame with occurence along with list type element called flags\n#'\n#' @author Vandit Jain\n#' @export\noccTAM <- function(country = \"AU\",classKey=359,minimal=FALSE){\n  #attaching the required packages\n  library(rgeospatialquality)\n  library(rgbif)\n\n  # retrieving data using the rgbif package\n  d <- occ_data(\n    country=country,\n    classKey=classKey,\n    minimal=minimal\n  )\n\n  #after filtering out occurences other than terrestrial animals\n  dataset <- d$data\n  dataset <- format_gq(dataset)\n  dataflags <- add_flags(format_gq(dataset))  # applying the GQ API using the rgeospatiality package\n}\n",
+    "created" : 1486743450760.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "790336629",
+    "id" : "E36E5638",
+    "lastKnownWriteTime" : 1486815606,
+    "last_content_update" : 1486815606989,
+    "path" : "/media/vandit/New Volume/study/programming/gsoc/medium/R/medium.R",
+    "project_path" : "R/medium.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

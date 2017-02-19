@@ -1,0 +1,30 @@
+---
+title: "occAM"
+author: "Vandit Jain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+This function takes as parameters-
+
+1. The country in ISO 3166-1-alpha-2 format(two charaters to represent a particular country).
+
+2. Key for selecting the class of species (an integer defined accordingly by GBIF).
+
+3. A logical value(TRUE/FALSE) as to whether user wants complete details and large output with all fields.
+
+This function uses the rgbif and the rgeospatialquality packages to extract data and then to apply the Geospatial Quality API respectively (applying format_gq function).
+
+```{r output}
+  library(medium)
+  occ <- occAM()
+  str(occ)
+```
+
+
+The parameters have default values to get the occurence data of Australian mammals, but other values can be given to the parameters to search accordingly.

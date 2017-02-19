@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#GSoC - Integrating biodiversity data curation functionality\n#\n#Author -Vandit Jain\n\n#attaching packages\nlibrary(rgbif)\nlibrary(rgeospatialquality)\nlibrary(curl)\n\n#reading data\ndata <- read.table(\"../0058701-160910150852091.csv\",sep=\"\\t\",header = TRUE)\ndata <- data[1:500,]  #slicing to first 500 rows\ndataflags <- add_flags(data) #applying GQ API using rgeospatialquality package\n",
+    "created" : 1486722787480.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2024408426",
+    "id" : "76A31A6",
+    "lastKnownWriteTime" : 1486724259,
+    "last_content_update" : 1486724259032,
+    "path" : "~/Rprojects/rgbif/easy.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

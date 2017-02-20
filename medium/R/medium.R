@@ -34,7 +34,8 @@ occAM <- function(country = "AU",classKey=359,minimal=FALSE){
           classKey=classKey,
           minimal=minimal,
           start=i,
-          limit=500
+          limit=500,
+          hasCoordinate = TRUE
       )
       dataset<-output$data
     }
@@ -44,13 +45,32 @@ occAM <- function(country = "AU",classKey=359,minimal=FALSE){
         classKey=classKey,
         minimal=minimal,
         start=i,
-        limit=500
+        limit=500,
+        hasCoordinate = TRUE
       )
       dataset <- rbind.fill(dataset,d$data)
     }
   }
-
-  #after filtering out occurences other than terrestrial animals
+  #applying GQ API to add flags (taking 1000 at a time beacuse
+  #of the constraint of the function)
   dataset <- format_gq(dataset,source="rgbif")
-  return(dataset)
+  for(i in 0:4){
+    if(i==0){
+      print(dim(dataset))
+      datasetflags <- add_flags(dataset[(i*1000+1):(i*1000+1000),])
+      print(dim(datasetflags))
+      flags <- datasetflags$flags
+      d <- datasetflags[,1:ncol(datasetflags)-1]
+    }
+    else{
+      tempdatasetflags <- add_flags(dataset[(i*1000+1):(i*1000+1000),])
+      print(dim(tempdatasetflags))
+      tempflags <- tempdatasetflags$flags
+      tempdataset <- tempdatasetflags[,1:ncol(tempdatasetflags)-1]
+      flags <- rbind.fill(flags,tempflags)
+      d <- rbind.fill(d,tempdataset)
+    }
+  }
+  d$flags <- as.data.frame(flags)
+  return(d)
 }

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"occAM\"\nauthor: \"Vandit Jain\"\ndate: \"`r Sys.Date()`\"\noutput: rmarkdown::html_vignette\nvignette: >\n  %\\VignetteIndexEntry{Vignette Title}\n  %\\VignetteEngine{knitr::rmarkdown}\n  %\\VignetteEncoding{UTF-8}\n---\n\n\nThis function takes as parameters-\n\n1. The country in ISO 3166-1-alpha-2 format(two charaters to represent a particular country).\n\n2. Key for selecting the class of species (an integer defined accordingly by GBIF).\n\n3. A logical value(TRUE/FALSE) as to whether user wants complete details and large output with all fields.\n\nThis function uses the rgbif and the rgeospatialquality packages to extract data and then to apply the Geospatial Quality API respectively. \n<br>\nIt uses the **format_gq** function to structure data according to rgbif format. \n<br>\nThen the **add_flags** function appends maximum of 14 flags (according to provided data) namely **hasCoordinates,validCountry,validCoordinates,hasCountry,coordinatesInsideCountry,**\n**hasScientificName,highPrecisionCoordinates,coordinatesInsideRangeMap,nonZeroCoordinates,**\n**distanceToRangeMapInKm,negatedLatitude,negatedLongitude,distanceToCountryInKm,transposedCoordinates.**\n<br>\n\nIt describes the data input format and enumerates and briefly\ndescribes the possible geospatial quality flags that the API returns.\n<br>\nThe API returns a JSON output which is converted to a data frame.\n\n\n```{r output}\n  #library(medium)\n  #occ <- occAM()\n  #str(occ)\n```\n\n\nThe parameters of the function have default values to get the occurence data of Australian mammals, but other values can be given to the parameters to search accordingly.\n",
+    "created" : 1487598083964.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1729732158",
+    "id" : "7BD2CE99",
+    "lastKnownWriteTime" : 1487608223,
+    "last_content_update" : 1487608223604,
+    "path" : "E:/study/programming/gsoc/rgbif/solution/medium/vignettes/occAM.Rmd",
+    "project_path" : "vignettes/occAM.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

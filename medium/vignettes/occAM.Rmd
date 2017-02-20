@@ -18,13 +18,26 @@ This function takes as parameters-
 
 3. A logical value(TRUE/FALSE) as to whether user wants complete details and large output with all fields.
 
-This function uses the rgbif and the rgeospatialquality packages to extract data and then to apply the Geospatial Quality API respectively (applying format_gq function).
+This function uses the rgbif and the rgeospatialquality packages to extract data and then to apply the Geospatial Quality API respectively. 
+<br>
+It uses the **format_gq** function to structure data according to rgbif format. 
+<br>
+Then the **add_flags** function appends maximum of 14 flags (according to provided data) namely **hasCoordinates,validCountry,validCoordinates,hasCountry,coordinatesInsideCountry,**
+**hasScientificName,highPrecisionCoordinates,coordinatesInsideRangeMap,nonZeroCoordinates,**
+**distanceToRangeMapInKm,negatedLatitude,negatedLongitude,distanceToCountryInKm,transposedCoordinates.**
+<br>
+
+It describes the data input format and enumerates and briefly
+describes the possible geospatial quality flags that the API returns.
+<br>
+The API returns a JSON output which is converted to a data frame.
+
 
 ```{r output}
-  library(medium)
-  occ <- occAM()
-  str(occ)
+  #library(medium)
+  #occ <- occAM()
+  #str(occ)
 ```
 
 
-The parameters have default values to get the occurence data of Australian mammals, but other values can be given to the parameters to search accordingly.
+The parameters of the function have default values to get the occurence data of Australian mammals, but other values can be given to the parameters to search accordingly.

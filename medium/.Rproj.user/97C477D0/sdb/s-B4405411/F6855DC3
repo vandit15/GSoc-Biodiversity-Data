@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' function to retrieve occurence data of terrestial animals in Australia and apply GQ API\n#'\n#' @name occAM\n#'\n#' @title occurence data from GBIF datasets.\n#'\n#' @description function to retrieve occurence data of terrestial\n#' animals in Australia and apply GQ API\n#'\n#' @param country (character) ISO 3166-1-alpha-2 code of a particular country to\n#' get occurences of that country.Default:\"AU\"\n#' @param classKey (integer) Key of a particular class(eg. animalia) according to\n#' GBIF. Default:359\n#' @param minimal (logical) False to get full set of fields for each record.\n#' Default:FALSE\n#'\n#' @return a data frame with occurence data\n#'\n#' @author Vandit Jain\n#' @export\noccAM <- function(country = \"AU\",classKey=359,minimal=FALSE){\n  #attaching the required packages\n  library(rgeospatialquality)\n  library(rgbif)\n  library(plyr)\n\n  # retrieving data using the rgbif package\n  for(i in 0:9)\n  {\n    if(i==0){\n\n        output<-occ_data(\n          country=country,\n          classKey=classKey,\n          minimal=minimal,\n          start=i,\n          limit=500,\n          hasCoordinate = TRUE\n      )\n      dataset<-output$data\n    }\n    else{\n      d<-occ_data(\n        country=country,\n        classKey=classKey,\n        minimal=minimal,\n        start=i,\n        limit=500,\n        hasCoordinate = TRUE\n      )\n      dataset <- rbind.fill(dataset,d$data)\n    }\n  }\n  #applying GQ API to add flags (taking 1000 at a time beacuse\n  #of the constraint of the function)\n  dataset <- format_gq(dataset,source=\"rgbif\")\n  for(i in 0:4){\n    if(i==0){\n      print(dim(dataset))\n      datasetflags <- add_flags(dataset[(i*1000+1):(i*1000+1000),])\n      print(dim(datasetflags))\n      flags <- datasetflags$flags\n      d <- datasetflags[,1:ncol(datasetflags)-1]\n    }\n    else{\n      tempdatasetflags <- add_flags(dataset[(i*1000+1):(i*1000+1000),])\n      print(dim(tempdatasetflags))\n      tempflags <- tempdatasetflags$flags\n      tempdataset <- tempdatasetflags[,1:ncol(tempdatasetflags)-1]\n      flags <- rbind.fill(flags,tempflags)\n      d <- rbind.fill(d,tempdataset)\n    }\n  }\n  d$flags <- as.data.frame(flags)\n  return(d)\n}\n",
+    "created" : 1487490937886.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3067029848",
+    "id" : "F6855DC3",
+    "lastKnownWriteTime" : 1487605531,
+    "last_content_update" : 1487605531191,
+    "path" : "E:/study/programming/gsoc/rgbif/solution/medium/R/medium.R",
+    "project_path" : "R/medium.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

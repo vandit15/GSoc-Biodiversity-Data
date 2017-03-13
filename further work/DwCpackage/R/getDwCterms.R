@@ -13,14 +13,17 @@ getDwCTerms = function() {
   DwCTerms <- DwCTerms[3:197]
   #DwCTerms <<- DwCTerms[-which(DwCTerms == "")]
   naindices <- which(DwCTerms == "")
+  #DwCTerms <- list(DwCTerms)
   print(naindices)
+  print(DwCTerms)
   previ <- 0
   termslist  <- list()
   for(i in naindices){
-    termslist <- c(termslist,list(DwCTerms[previ+1:i-1]))
+    print(i)
+    termslist <- list(termslist,list(DwCTerms[previ+1:i-1]))
     previ <- i
   }
-  termslist <- list(termslist,list(DwCTerms[i+1:length(DwCTerms)]))
+  termslist <- list(termslist,list(DwCTerms[previ+1:length(DwCTerms)]))
 
   return(termslist)
 }

@@ -1,0 +1,19 @@
+---
+title: "Introduction to DwC terms"
+output: pdf_notebook
+---
+The package uses html parsing of the Darwin Core Terms Index [page]http://rs.tdwg.org/dwc/terms/index.htm . For parsing, it uses the xml2 R package.
+
+This is the first step towrards standardisation of the input data that the package gets from any organisation. The fields in the data are changed and grouped according to Darwin Core terms. 
+
+
+```{r}
+  dwctermsPage = httr::GET("http://rs.tdwg.org/dwc/terms/index.htm")
+  DwCTerms<-xml2::xml_text(xml2::xml_find_all(x=xml2::read_html(dwctermsPage), xpath='//p//a'))
+  #removing irrelevent terms
+  DwCTerms <- DwCTerms[3:197]
+  DwCTerms <- DwCTerms[-which(DwCTerms == "")]
+  print(head(DwCTerms))
+  print(tail(DwCTerms))
+```
+
